@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MANYA ♡</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%, #ff5ca855, transparent 35%),
+        radial-gradient(circle at 80% 80%, #9d5cff55, transparent 35%),
+        linear-gradient(135deg, #090014, #20002f, #05000d);
+}
+
+/* Stars */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#ffffffaa 1px, transparent 1px);
+
+    background-size: 70px 70px, 130px 130px;
+    background-position: 0 0, 40px 60px;
+
+    opacity: .4;
+    pointer-events: none;
+}
+
+/* Falling hearts */
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    top: -50px;
+
+    animation: fall linear infinite;
+
+    opacity: .7;
+}
+
+@keyframes fall {
+
+    from {
+        transform: translateY(-50px) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+
+}
+
+/* Main card */
+
+.card {
+
+    position: relative;
+    z-index: 5;
+
+    width: min(430px, 90%);
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.10);
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.5),
+        inset 0 1px rgba(255,255,255,.25);
+}
+
+/* MANYA */
+
+.name {
+
+    font-size: 48px;
+
+    font-weight: bold;
+
+    letter-spacing: 10px;
+
+    margin-bottom: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7dbb,
+            white,
+            #c59cff
+        );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+.subtitle {
+
+    letter-spacing: 3px;
+
+    font-size: 12px;
+
+    opacity: .75;
+
+    margin-bottom: 30px;
+}
+
+.heart-big {
+
+    font-size: 65px;
+
+    animation: pulse 1.5s infinite;
+
+}
+
+@keyframes pulse {
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+/* Input */
+
+input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 16px;
+
+    margin-bottom: 15px;
+}
+
+input::placeholder {
+    color: #ffffff88;
+}
+
+/* Button */
+
+button {
+
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4f9a,
+            #8e5cff
+        );
+
+    box-shadow:
+        0 10px 30px #0005;
+
+    transition: .25s;
+}
+
+button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px #ff4f9a55;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+#status {
+
+    margin-top: 20px;
+
+    font-size: 14px;
+
+    min-height: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="hearts" id="hearts"></div>
+
+
+<div class="card">
+
+    <div class="heart-big">
+        ❤️
+    </div>
+
+    <div class="name">
+        MANYA
+    </div>
+
+    <div class="subtitle">
+        100 THINGS ABOUT YOU ✦
+    </div>
+
+    <p>
+        This is just a little test before
+        our journey begins ✨
+    </p>
+
+    <br>
+
+    <input
+        id="name"
+        type="text"
+        placeholder="Enter your name"
+    >
+
+    <button id="sendButton">
+        Send Test Email 💌
+    </button>
+
+    <div id="status"></div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   EMAILJS CONFIGURATION
+========================================= */
+
+emailjs.init({
+    publicKey: "30lIG9UiEcOgq1reY"
+});
+
+
+/* =========================================
+   SEND TEST EMAIL
+========================================= */
+
+document
+.getElementById("sendButton")
+.addEventListener("click", function () {
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const status =
+        document.getElementById("status");
+
+    const button =
+        document.getElementById("sendButton");
+
+
+    if (!name) {
+
+        status.innerHTML =
+            "Please enter a name ❤️";
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    status.innerHTML =
+        "Sending your little message... 💌";
+
+
+    const templateParams = {
+
+        name: name,
+
+        message:
+            "Hello from the MANYA website ❤️",
+
+        title:
+            "MANYA Website Test",
+
+        time:
+            new Date().toLocaleString()
+
+    };
+
+
+    emailjs.send(
+        "0604200904112009",
+        "__ejs-test-mail-service__",
+        templateParams
+    )
+
+    .then(function (response) {
+
+        console.log(
+            "SUCCESS!",
+            response.status,
+            response.text
+        );
+
+        status.innerHTML =
+            "Sent successfully! ❤️✨<br>Check your Gmail.";
+
+        button.disabled = false;
+
+    })
+
+    .catch(function (error) {
+
+        console.error(
+            "EMAILJS ERROR:",
+            error
+        );
+
+        status.innerHTML =
+            "Something went wrong ❌<br>" +
+            "Check the EmailJS service/template.";
+
+        button.disabled = false;
+
+    });
+
+});
+
+
+/* =========================================
+   FALLING HEARTS
+========================================= */
+
+const container =
+    document.getElementById("hearts");
+
+const symbols =
+    ["❤️", "💗", "💕", "💖", "✨", "♡"];
+
+
+for (let i = 0; i < 35; i++) {
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerText =
+        symbols[
+            Math.floor(
+                Math.random() * symbols.length
+            )
+        ];
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+    heart.style.fontSize =
+        12 + Math.random() * 18 + "px";
+
+    heart.style.animationDuration =
+        5 + Math.random() * 8 + "s";
+
+    heart.style.animationDelay =
+        Math.random() * 8 + "s";
+
+    container.appendChild(heart);
+
+}
+
+</script>
+
+</body>
+</html>
