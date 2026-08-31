@@ -6,249 +6,320 @@
 
 <title>MANYA ♡</title>
 
+<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <style>
-* {
-    box-sizing: border-box;
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: white;
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
+    overflow:hidden;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
     background:
-        radial-gradient(circle at 20% 20%, #ff5ca855, transparent 35%),
-        radial-gradient(circle at 80% 80%, #9d5cff55, transparent 35%),
-        linear-gradient(135deg, #090014, #20002f, #05000d);
+        radial-gradient(circle at 20% 20%, #ff4f9a55, transparent 35%),
+        radial-gradient(circle at 80% 80%, #8b5cf655, transparent 35%),
+        linear-gradient(135deg,#07000f,#1c002d,#05000c);
 }
 
-/* Stars */
+/* STARS */
 
-.stars {
-    position: fixed;
-    inset: 0;
+.stars{
+    position:fixed;
+    inset:0;
+
     background-image:
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(#ffffffaa 1px, transparent 1px);
+        radial-gradient(white 1px,transparent 1px),
+        radial-gradient(#ffffffaa 1px,transparent 1px);
 
-    background-size: 70px 70px, 130px 130px;
-    background-position: 0 0, 40px 60px;
+    background-size:70px 70px,120px 120px;
+    background-position:0 0,40px 60px;
 
-    opacity: .4;
-    pointer-events: none;
+    opacity:.4;
+    pointer-events:none;
 }
 
-/* Falling hearts */
+/* FALLING HEARTS */
 
-.hearts {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
+.hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
 }
 
-.heart {
-    position: absolute;
-    top: -50px;
-
-    animation: fall linear infinite;
-
-    opacity: .7;
+.heart{
+    position:absolute;
+    top:-50px;
+    animation:fall linear infinite;
+    opacity:.75;
 }
 
-@keyframes fall {
+@keyframes fall{
 
-    from {
-        transform: translateY(-50px) rotate(0deg);
+    0%{
+        transform:translateY(-50px) rotate(0deg);
     }
 
-    to {
-        transform: translateY(110vh) rotate(360deg);
+    100%{
+        transform:translateY(110vh) rotate(360deg);
     }
 
 }
 
-/* Main card */
+/* CARD */
 
-.card {
+.card{
 
-    position: relative;
-    z-index: 5;
+    position:relative;
+    z-index:5;
 
-    width: min(430px, 90%);
+    width:min(430px,90%);
 
-    padding: 40px 30px;
+    padding:40px 30px;
 
-    text-align: center;
+    text-align:center;
 
-    border-radius: 30px;
+    border-radius:32px;
 
-    background: rgba(255,255,255,.10);
+    background:rgba(255,255,255,.10);
 
-    border: 1px solid rgba(255,255,255,.25);
+    border:1px solid rgba(255,255,255,.25);
 
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
 
     box-shadow:
         0 25px 70px rgba(0,0,0,.5),
         inset 0 1px rgba(255,255,255,.25);
 }
 
-/* MANYA */
+/* BIG HEART */
 
-.name {
+.big-heart{
 
-    font-size: 48px;
+    font-size:65px;
 
-    font-weight: bold;
+    margin-bottom:10px;
 
-    letter-spacing: 10px;
-
-    margin-bottom: 8px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff7dbb,
-            white,
-            #c59cff
-        );
-
-    -webkit-background-clip: text;
-
-    color: transparent;
+    animation:pulse 1.5s infinite;
 }
 
-.subtitle {
+@keyframes pulse{
 
-    letter-spacing: 3px;
+    0%,100%{
+        transform:scale(1);
+    }
 
-    font-size: 12px;
-
-    opacity: .75;
-
-    margin-bottom: 30px;
-}
-
-.heart-big {
-
-    font-size: 65px;
-
-    animation: pulse 1.5s infinite;
-
-}
-
-@keyframes pulse {
-
-    50% {
-        transform: scale(1.15);
+    50%{
+        transform:scale(1.15);
     }
 
 }
 
-/* Input */
+/* MANYA */
 
-input {
+.name{
 
-    width: 100%;
+    font-size:48px;
 
-    padding: 15px;
+    font-weight:bold;
 
-    border-radius: 15px;
+    letter-spacing:10px;
 
-    border: 1px solid rgba(255,255,255,.25);
+    margin-bottom:10px;
 
-    background: rgba(255,255,255,.08);
+    background:
+        linear-gradient(
+            90deg,
+            #ff75b8,
+            #ffffff,
+            #c38cff
+        );
 
-    color: white;
+    -webkit-background-clip:text;
 
-    outline: none;
-
-    font-size: 16px;
-
-    margin-bottom: 15px;
+    color:transparent;
 }
 
-input::placeholder {
-    color: #ffffff88;
+.subtitle{
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    opacity:.75;
+
+    margin-bottom:30px;
 }
 
-/* Button */
+.description{
 
-button {
+    line-height:1.7;
 
-    width: 100%;
+    font-size:15px;
 
-    padding: 16px;
+    opacity:.85;
 
-    border: none;
+    margin-bottom:25px;
+}
 
-    border-radius: 15px;
+/* INPUT */
 
-    color: white;
+input{
 
-    font-size: 16px;
+    width:100%;
 
-    font-weight: bold;
+    padding:16px 18px;
 
-    cursor: pointer;
+    margin-bottom:15px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    outline:none;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:16px;
+
+    transition:.3s;
+}
+
+input:focus{
+
+    border-color:#ff72b5;
+
+    box-shadow:0 0 20px rgba(255,90,160,.25);
+}
+
+input::placeholder{
+    color:#ffffff88;
+}
+
+/* BUTTON */
+
+button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:16px;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
 
     background:
         linear-gradient(
             135deg,
             #ff4f9a,
-            #8e5cff
+            #8b5cf6
         );
 
     box-shadow:
-        0 10px 30px #0005;
+        0 10px 30px rgba(0,0,0,.35);
 
-    transition: .25s;
+    transition:.25s;
 }
 
-button:hover {
+button:hover{
 
-    transform: translateY(-3px);
+    transform:translateY(-3px);
 
     box-shadow:
-        0 15px 35px #ff4f9a55;
+        0 15px 35px rgba(255,79,154,.35);
 }
 
-button:disabled {
-    opacity: .5;
-    cursor: not-allowed;
+button:disabled{
+
+    opacity:.5;
+
+    cursor:not-allowed;
+
+    transform:none;
 }
 
-#status {
+/* STATUS */
 
-    margin-top: 20px;
+#status{
 
-    font-size: 14px;
+    margin-top:20px;
 
-    min-height: 20px;
+    min-height:25px;
+
+    font-size:14px;
+
+    line-height:1.6;
 }
+
+/* FOOTER */
+
+.footer{
+
+    margin-top:25px;
+
+    font-size:12px;
+
+    opacity:.55;
+
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .card{
+        padding:35px 22px;
+    }
+
+    .name{
+        font-size:38px;
+        letter-spacing:7px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
+<!-- STAR FIELD -->
 <div class="stars"></div>
 
+<!-- FALLING HEARTS -->
 <div class="hearts" id="hearts"></div>
 
 
+<!-- MAIN CARD -->
+
 <div class="card">
 
-    <div class="heart-big">
+    <div class="big-heart">
         ❤️
     </div>
 
@@ -260,166 +331,222 @@ button:disabled {
         100 THINGS ABOUT YOU ✦
     </div>
 
-    <p>
-        This is just a little test before
-        our journey begins ✨
-    </p>
+    <div class="description">
 
-    <br>
+        A little journey made just for you. ✨
+
+        <br><br>
+
+        Before we begin the 100 questions,
+        let's make sure everything is working. 💌
+
+    </div>
+
 
     <input
-        id="name"
         type="text"
+        id="name"
         placeholder="Enter your name"
+        autocomplete="off"
     >
+
 
     <button id="sendButton">
         Send Test Email 💌
     </button>
 
+
     <div id="status"></div>
+
+
+    <div class="footer">
+        Made with ♡ for MANYA
+    </div>
 
 </div>
 
 
 <script>
 
-/* =========================================
-   EMAILJS CONFIGURATION
-========================================= */
+/* ==========================================
+   EMAILJS INITIALIZATION
+========================================== */
 
 emailjs.init({
+
     publicKey: "30lIG9UiEcOgq1reY"
+
 });
 
 
-/* =========================================
-   SEND TEST EMAIL
-========================================= */
+/* ==========================================
+   SEND EMAIL
+========================================== */
 
-document
-.getElementById("sendButton")
-.addEventListener("click", function () {
+const sendButton =
+    document.getElementById("sendButton");
 
-    const name =
-        document.getElementById("name").value.trim();
-
-    const status =
-        document.getElementById("status");
-
-    const button =
-        document.getElementById("sendButton");
+const status =
+    document.getElementById("status");
 
 
-    if (!name) {
+sendButton.addEventListener(
+    "click",
+    function(){
+
+        const name =
+            document
+            .getElementById("name")
+            .value
+            .trim();
+
+
+        if(!name){
+
+            status.innerHTML =
+                "Please enter your name ❤️";
+
+            return;
+
+        }
+
+
+        sendButton.disabled = true;
 
         status.innerHTML =
-            "Please enter a name ❤️";
+            "Sending... 💌";
 
-        return;
+
+        /* DATA SENT TO EMAILJS */
+
+        const templateParams = {
+
+            name: name,
+
+            message:
+                "Hello from the MANYA website ❤️",
+
+            title:
+                "MANYA Website Test",
+
+            time:
+                new Date().toLocaleString()
+
+        };
+
+
+        /* EMAILJS */
+
+        emailjs.send(
+
+            "0604200904112009",
+
+            "template_un75izi",
+
+            templateParams
+
+        )
+
+        .then(
+
+            function(response){
+
+                console.log(
+                    "Email sent:",
+                    response.status,
+                    response.text
+                );
+
+
+                status.innerHTML =
+                    "💖 Sent successfully!<br>" +
+                    "Check your Gmail.";
+
+                sendButton.disabled = false;
+
+            }
+
+        )
+
+        .catch(
+
+            function(error){
+
+                console.error(
+                    "EmailJS Error:",
+                    error
+                );
+
+
+                status.innerHTML =
+                    "❌ Something went wrong.<br>" +
+                    "Please check your EmailJS settings.";
+
+                sendButton.disabled = false;
+
+            }
+
+        );
 
     }
+);
 
 
-    button.disabled = true;
-
-    status.innerHTML =
-        "Sending your little message... 💌";
-
-
-    const templateParams = {
-
-        name: name,
-
-        message:
-            "Hello from the MANYA website ❤️",
-
-        title:
-            "MANYA Website Test",
-
-        time:
-            new Date().toLocaleString()
-
-    };
-
-
-    emailjs.send(
-        "0604200904112009",
-        "__ejs-test-mail-service__",
-        templateParams
-    )
-
-    .then(function (response) {
-
-        console.log(
-            "SUCCESS!",
-            response.status,
-            response.text
-        );
-
-        status.innerHTML =
-            "Sent successfully! ❤️✨<br>Check your Gmail.";
-
-        button.disabled = false;
-
-    })
-
-    .catch(function (error) {
-
-        console.error(
-            "EMAILJS ERROR:",
-            error
-        );
-
-        status.innerHTML =
-            "Something went wrong ❌<br>" +
-            "Check the EmailJS service/template.";
-
-        button.disabled = false;
-
-    });
-
-});
-
-
-/* =========================================
+/* ==========================================
    FALLING HEARTS
-========================================= */
+========================================== */
 
-const container =
+const heartContainer =
     document.getElementById("hearts");
 
-const symbols =
-    ["❤️", "💗", "💕", "💖", "✨", "♡"];
+
+const symbols = [
+    "❤️",
+    "💗",
+    "💕",
+    "💖",
+    "💜",
+    "✨",
+    "♡"
+];
 
 
-for (let i = 0; i < 35; i++) {
+for(let i = 0; i < 40; i++){
 
     const heart =
         document.createElement("div");
 
-    heart.className = "heart";
+
+    heart.className =
+        "heart";
+
 
     heart.innerText =
         symbols[
             Math.floor(
-                Math.random() * symbols.length
+                Math.random() *
+                symbols.length
             )
         ];
+
 
     heart.style.left =
         Math.random() * 100 + "%";
 
+
     heart.style.fontSize =
-        12 + Math.random() * 18 + "px";
+        (12 + Math.random() * 18) + "px";
+
 
     heart.style.animationDuration =
-        5 + Math.random() * 8 + "s";
+        (5 + Math.random() * 8) + "s";
+
 
     heart.style.animationDelay =
         Math.random() * 8 + "s";
 
-    container.appendChild(heart);
+
+    heartContainer.appendChild(heart);
 
 }
 
